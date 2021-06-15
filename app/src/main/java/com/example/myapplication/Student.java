@@ -7,10 +7,21 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Student {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id;
     @ColumnInfo(name = "s_name")
     String name;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", dummy=" + dummy +
+                '}'+"\n";
+    }
+
     @ColumnInfo(name = "s_age")
     int age;
     @Ignore
