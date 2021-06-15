@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,7 @@ public class ViewModelAct extends AppCompatActivity {
     TextView tvShow;
     Button btAdd, btShow;
     EditText etName;
-    String data;
+    MyViewModel myViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +23,18 @@ public class ViewModelAct extends AppCompatActivity {
         btAdd = findViewById(R.id.btAdd);
         btShow = findViewById(R.id.btShow);
         etName = findViewById(R.id.etName);
+        myViewModel =new  ViewModelProvider(ViewModelAct.this).get(MyViewModel.class);
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
-               data =  etName.getText().toString();
+              myViewModel.data = etName.getText().toString();
             }
         });
         btShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           tvShow.setText(data);
+           tvShow.setText(myViewModel.data);
             }
         });
     }
