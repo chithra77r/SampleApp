@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -28,14 +29,22 @@ public class ViewModelAct extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-              myViewModel.data = etName.getText().toString();
+              myViewModel.funLiveData( etName.getText().toString());
             }
         });
-        btShow.setOnClickListener(new View.OnClickListener() {
+
+        myViewModel.liveData.observe(this, new Observer<String>() {
             @Override
-            public void onClick(View v) {
-           tvShow.setText(myViewModel.data);
+            public void onChanged(String s) {
+                tvShow.setText(s);
             }
         });
+
+//        btShow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//           tvShow.setText(myViewModel.data);
+//            }
+//        });
     }
 }
