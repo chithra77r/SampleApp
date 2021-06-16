@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Student student = new Student();
                 student.name = etName.getText().toString();
-                studentDao.insertStudent(student);
+
+
                 etName.getText().clear();
 
             }
